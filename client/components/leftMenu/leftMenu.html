@@ -1,0 +1,20 @@
+<div class="grey_background"></div>
+<div id="sidebar-wrapper" data-ng-controller="LeftMenuCtrl">
+    <ul class="nav sidebar-nav" id="accordion" role="tablist" aria-multiselectable="false">
+        <li class="parent_menu panel" ng-repeat="menu in leftMenu" ng-if="hasPermissions(menu.permissions) && menu.submenu" ng-class="{active: (route.activeParent == menu.module)}">
+            <span ng-if="menu.submenu.length == 0">
+                <a href="{{menu.link}}" class="act_menu" ng-click = "targetPage(menu.link)" ng-class="{active: (route.activeParent == menu.module)}"><i class="{{menu.iconClass}}"></i>{{menu.title | translate}}</a>
+            </span>
+            <span ng-if="menu.submenu.length > 0">
+                <a class="parent_menu_a" ng-class="{collapsed: (route.activeParent == menu.module)}" aria-expanded="{{(route.activeParent == menu.module)?true:false}}" data-target="#collapse{{menu.id}}" data-parent="#accordion" data-toggle="collapse">
+                    <i class="{{menu.iconClass}}"></i> {{menu.title | translate}} <i class="icon-pright rotate"></i>
+                </a>
+                <ul id="collapse{{menu.id}}" ng-class="{in: (route.activeParent == menu.module)}" class="panel-collapse collapse" role="tabpanel">
+                    <li ng-repeat="submenu in menu.submenu" ng-if="hasPermissions(submenu.permission)" ng-class="{active: (route.activeMenu == submenu.submodule)}">
+                        <a href="{{submenu.link}}" ng-click = "targetPage(submenu.link)">{{submenu.title | translate}}</a>
+                    </li>
+                </ul>
+            </span>
+        </li>
+    </ul>
+</div>

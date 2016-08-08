@@ -1,0 +1,100 @@
+<div class="row">
+    <div class="col-lg-3 col-md-5 col-sm-5 col-xs-12">
+        <div class="row" ng-if="rules">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <br>
+                <div class="panel panel-default border_gray">
+                    <div class="panel-body">
+                        <div id="carouselItem" class="carousel slide" data-ride="carousel" data-interval="false">
+                            <carousel>
+                                <slide ng-repeat="slide in pcmsDetail.product_images" ng-if="pcmsDetail.product_images.length" active="slide.active">
+                                    <img ng-src="{{slide.image_path}}">
+                                </slide>
+                                <slide ng-if="!pcmsDetail.product_images.length" active="slide.active">
+                                    <img src="assets/images/qc/qc_img_not_avlbl.png" alt="qc_img_not_avlbl.jpg">
+                                </slide>
+                            </carousel>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <p class="txt-12 heading_color">{{'LABEL_TEXT.CHECK_ITEM_FROM_MARKETPLACE' | translate}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <a ng-click="openUrl()">{{prodDetail.url ? prodDetail.url : '-'}}</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9 col-md-7 col-sm-7 col-xs-12" ng-if="rules">
+        <br>
+        <div class="row" ng-if="pcmsDetail">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <p class="txt-12 heading_color  "> {{'LABEL_TEXT.MATCH_PROD_DETAIL' | translate}}</p>
+            </div>
+        </div>
+        <div class="row" ng-if="pcmsDetail">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <dl>
+                    <dt>{{'LABEL_TEXT.PROD_NAME' | translate}}</dt>
+                    <dd>{{pcmsDetail.title}}</dd>
+                </dl>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6" ng-repeat="attribute in pcmsDetail.attributes">
+                <dl>
+                    <dt>{{attribute.name | capitalCase}}</dt>
+                    <dd>{{attribute.value ? attribute.value : ' - '}}</dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <p class="txt-12 heading_color">{{'LABEL_TEXT.MEASURE_FOR_ITEM' | translate}} </p>
+            </div>
+        </div>
+        <div class="row" ng-if="qcData.mandatoryField">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" ng-repeat="field in qcData.mandatoryField">
+                <div class="form-group" ng-if="field.name">
+                    <label>
+                        {{field.name | capitalCase}}
+                        <span ng-if="field.unit">( in {{field.unit | lowercase}} )</span>
+                        <span class="text-danger">*</span>
+                    </label>
+                    <div ng-if="field.name.indexOf('date')>0" class= "datepicker position_rel date_range" date-format="yyyy-MM-dd" date-min-limit="{{minDate}}">
+                        <input ng-change="isValueChanged(field, true)" ng-model="field.value" class="form-control style720kb" type="text" readonly="true" placeholder="{{field.name | capitalCase}}"/>
+                        <a class="remove-date" ng-if="field.removeDate" ng-click="removeDateRange(field)">&times;</a>
+                    </div>
+                    <input ng-change="isValueChanged()" ng-if="field.name.indexOf('date') < 0"  class="form-control" placeholder="{{field.name | capitalCase}}" name="{{field.name}}" ng-model="field.value" type="text" value="{{field.value}}" required>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-if="qcData.optionalField">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" ng-repeat="field in qcData.optionalField">
+                <div class="form-group" ng-if="field.name">
+                    <label>
+                        {{field.name | capitalCase}}
+                        <span ng-if="field.unit">( in {{field.unit | lowercase}} )</span>
+                    </label>
+                    <div ng-if="field.name.indexOf('date') > 0" class= "datepicker position_rel date_range" date-format="yyyy-MM-dd" date-min-limit="{{minDate}}">
+                        <input ng-change="isValueChanged(field, true)" ng-model="field.value" class="form-control style720kb" type="text" readonly="true" placeholder="{{field.name| capitalCase}}"/>
+                        <a class="remove-date" ng-if="field.removeDate" ng-click="removeDateRange(field)">&times;</a>
+                    </div>
+                    <input ng-change="isValueChanged()" ng-if="field.name.indexOf('date') < 0" class="form-control" placeholder="{{field.name | capitalCase}}" ng-model="field.value" type="text" value="{{field.value}}">
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="rules.instructions.length > 0">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <p class="txt-12 heading_color"> {{'LABEL_TEXT.QC_ITEM_INST' | translate}}</p>
+                <ul class="new_list">
+                    <li ng-repeat="inst in rules.instructions">{{inst.text}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

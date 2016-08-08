@@ -1,0 +1,76 @@
+<nav class="header">
+
+    <nav class="navbar navbar-default">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header logo_wrapper">
+            <a href="javascript:" class="pull-left left-menu-toggle">
+                <i class="icon-ham"></i>
+            </a>
+            <a href="#" class="pull-left">
+                <img class="logo" alt="" src="../assets/images/logo_square.png"><span class="logo_lext hidden-xs">{{'PAGE_CONTENT.GENERIC.HEADING'| translate}}</span>
+            </a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right navbar-top-links">
+            <!-- <li>
+        <a href=""><i class="icon-search"></i></a>
+      </li>
+      <li class="hidden-xs">
+        <a href=""><i class="icon-help"></i></a>
+      </li> -->
+            <li class="dropdown hidden-xs" ng-if="isStationPage">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-disabled = 'true' role="button" aria-haspopup="true" aria-expanded="false">{{clientDetail.name}} <i class="icon-pdown"></i></a>
+
+                <div class="dropdown-menu dropdown-menu-right fc-select-dropdown" role="menu">
+                    <form class="form" role="form">
+                        <div class="form-group no-margin">
+                            <input type="text" class="form-control" ng-model="search.$" placeholder="{{'INPUT_TEXT.PH1' | translate}}" class="form-control" focus-if required>
+                        </div>
+                    </form>
+                    <ul class="fc-select-dropdown-menu">
+                        <li ng-click="resetClient(client)" data-ng-repeat="client in profileData.clients_data | filter:search">
+                            <a>{{client.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-disabled = 'true' aria-haspopup="true" aria-expanded="false">
+                    <i class="icon-dp hidden-xs"></i> {{(profileData.user_profile.first_name ? profileData.user_profile.first_name : profileData.user_profile.username) || userName}}
+                    <i class="icon-pdown"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li ng-if="permissions.length>0"><a href="/password/change">Change Password</a>
+                    </li>
+                    <li><a href="#" ng-click="logout()">Logout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!-- /.container-fluid -->
+    </nav>
+
+
+</nav>
+<script>
+    $(function() {
+
+        jQuery('.left-menu-toggle').click(function() {
+            toggle_click();
+        });
+
+        jQuery(".grey_background").click(function() {
+            toggle_click();
+        });
+
+
+
+    });
+
+
+    function toggle_click() {
+        $('.main').toggleClass('full', 1000);
+        $('#sidebar-wrapper').toggleClass('collapsed', 1000);
+        $('.grey_background').toggleClass('visible', 1000);
+    }
+</script>

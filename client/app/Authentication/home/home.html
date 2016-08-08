@@ -1,0 +1,55 @@
+<section>
+    <nav class="landing-page-header">
+        <div class="container-fluid header hidden">
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+
+            </div>
+        </div>
+
+    </nav>
+    <div class="content-wrapper">
+        <div class="content-area">
+            <br>
+            <br>
+
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+
+                        <div class="card login_wrapper">
+
+                            <div class="lang">
+
+                                <div data-ng-controller="LanguageCtrl as asLangCtrl" data-ng-include="'components/language/language.html'"></div>
+
+                            </div>
+                            <div>
+                                <img class="login_logo" src="assets/images/logo_white_on_red.png" alt="" />
+                                <h4 class="godam_title">{{'PAGE_CONTENT.GENERIC.HEADING'| translate}}</h4>
+                                <br>
+                            </div>
+                            <form class="login-form">
+
+
+                                <div class="form-group">
+                                    <button type="button" ng-click="vm.googleAuth()" class="btn btn-red self-center">
+                                        <i class="icon-gplus btn_group_icon"></i><span class="btn_group_text">{{'INPUT_TEXT.BTN1' | translate}}</span>
+                                    </button>
+
+                                </div>
+
+                                <hr class="line_after_text">
+
+                                <p class="small_text_below_login" href="">{{'HOME_PAGE.P1' | translate}}
+                                    <br/> {{'PAGE_CONTENT.PAGE_ONE.PLZ_TEXT' |translate}} <a href="/login">{{'INPUT_TEXT.LINK_BTN1' | translate}}</a>.</p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

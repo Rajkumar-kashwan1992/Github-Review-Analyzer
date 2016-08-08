@@ -1,0 +1,61 @@
+<section>
+    <div class="content-wrapper">
+        <div class="content-area">
+            <br>
+            <br>
+
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                        <div class="card login_wrapper">
+                            <div class="lang">
+                                <div data-ng-controller="LanguageCtrl as asLangCtrl" data-ng-include="'components/language/language.html'"></div>
+                            </div>
+                            <div>
+                                <img alt="" src="assets/images/logo_white_on_red.png" class="login_logo">
+                                <h4 class="godam_title">
+                                    {{'PAGE_CONTENT.GENERIC.HEADING'| translate}}
+                                </h4>
+
+                                <h4 class="godam_title_secondary"><br>
+                                    <span ng-if="!vm.success" ng-bind-html="'FORGOT_PASSWORD_PAGE.H1' | translate"></span>
+                                    <span ng-if="vm.success">
+                                       <span ng-bind-html="'FORGOT_PASSWORD_PAGE.P1' | translate"></span>
+                                        <br>
+                                        <a href="/login" class="link-sm"
+                                           ng-bind-html="'FORGOT_PASSWORD_PAGE.CLICK_LOGIN_TEXT' | translate"></a>
+                                    </span>
+                                </h4>
+                                <br>
+                            </div>
+                            <ng-form class="login-form text-left" name="password_recover_form" ng-if="!vm.success">
+                                <div class="alert alert-danger text" ng-show="vm.error">
+                                    <button ng-click="vm.error = !vm.error"  class="close">&times;</button>
+                                    <b>{{'ALERT_MSG.ERROR_HEAD' | translate}}</b>&nbsp;{{vm.errMsg | translate}}
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="sizing-addon2"><i class="icon-mail"></i></span>
+                                        <input autocomplete="off" placeholder="{{'FORGOT_PASSWORD_PAGE.PLACEHOLDER_TEXT'| translate}}" type="email" name="emailId" id="emailId" class="form-control" ng-model="vm.user_email" ng-maxlength="100" ng-pattern="/^[-.\w]+@[-\w]+(?:\.[a-z0-9A-Z]+)+$/" focus-if required>
+                                    </div>
+                                    <div class="text-left" ng-show="password_recover_form.emailId.$invalid && (!password_recover_form.emailId.$pristine)">
+                                        <p class="help-block" ng-if="password_recover_form.emailId.$error.maxlength">
+                                            {{'FORGOT_PASSWORD_PAGE.ERR2'| translate}}</p>
+
+                                        <p class="help-block" ng-if="password_recover_form.emailId.$error.pattern || password_recover_form.email.$error.emailId">
+                                            {{'FORGOT_PASSWORD_PAGE.ERR3'| translate}}</p>
+                                    </div>
+                                </div>
+                                <div class="form-group m-b-0">
+                                    <button class="btn btn-red btn-lg btn-block" ng-click="recover(password_recover_form)" type="button" ng-disabled="password_recover_form.$invalid">{{'BTN_SUBMIT'| translate}}
+                                    </button>
+                                </div>
+                            </ng-form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

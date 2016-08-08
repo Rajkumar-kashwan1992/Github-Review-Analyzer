@@ -1,0 +1,121 @@
+<div class="row">
+    <div class="col-lg-8 col-md-7 col-sm-6 col-xs-12">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 image_column">
+                <div class="panel panel-default border_gray small_box">
+                    <div class="panel-body">
+                        <div class="carousel slide" data-ride="carousel" data-interval="false">
+                            <carousel>
+                                <slide ng-repeat="slide in pcmsDetail.product_images" ng-if="pcmsDetail && pcmsDetail.product_images.length > 0" active="slide.active">
+                                    <img ng-src="{{slide.image}}">
+                                </slide>
+                                <slide ng-if="!pcmsDetail || (pcmsDetail && pcmsDetail.product_images.length < 1)" active="slide.active">
+                                    <img src="assets/images/qc/qc_img_not_avlbl.png" alt="qc_img_not_avlbl.jpg">
+                                </slide>
+                            </carousel>
+                        </div>
+                    </div>
+                </div>
+                <p class="txt-12 heading_color " ng-if="prodDetail.url">{{'LABEL_TEXT.CHECK_ITEM_FROM_MARKETPLACE' | translate}}
+                    <br>
+                    <a ng-click="openUrl()">{{prodDetail.url}}</a>
+                </p>
+            </div>
+            <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12 image_column" ng-if="rules">
+                <div class="row" ng-if="pcmsDetail">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <p class="txt-12 heading_color  "> {{'LABEL_TEXT.MATCH_PROD_DETAIL' | translate}}</p>
+                    </div>
+                </div>
+                <div class="row" ng-if="pcmsDetail">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                        <dl>
+                            <dt>{{'LABEL_TEXT.PROD_NAME' | translate}}</dt>
+                            <dd>{{pcmsDetail.title}}</dd>
+                        </dl>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6" ng-repeat="attribute in pcmsDetail.attributes">
+                        <dl>
+                            <dt>{{attribute.name | capitalCase}}</dt>
+                            <dd>{{attribute.value ? attribute.value : ' - '}}</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <p class="txt-12 heading_color">{{'LABEL_TEXT.MEASURE_FOR_ITEM' | translate}}</p>
+                    </div>
+                </div>
+                <div class="row" ng-if="qcData.mandatoryField">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6" ng-repeat="field in qcData.mandatoryField">
+                        <dl ng-if="field.name">
+                            <dt>
+                                {{field.name | capitalCase}}
+                                <span ng-if="field.unit">( in {{field.unit |lowercase}} )</span>
+                                <span class="text-danger">*</span>
+                            </dt>
+                            <dd>{{field.value ? field.value: ' - '}}</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="row details_row" ng-if="qcData.optionalField">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6" ng-repeat="field in qcData.optionalField">
+                        <dl ng-if="field.name">
+                            <dt>
+                                {{field.name | capitalCase}}
+                                <span ng-if="field.unit">( in {{field.unit | lowercase}} )</span>
+                            </dt>
+                            <dd>{{field.value ? field.value: ' - '}}</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="row" ng-show="rules.instructions.length > 0">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <p class="txt-12 heading_color"> {{'LABEL_TEXT.QC_ITEM_INST' | translate}} </p>
+                        <ul class="new_list">
+                            <li ng-repeat="inst in rules.instructions">{{inst.text}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12 border_left">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <p class="txt-12 heading_color">{{'LABEL_TEXT.ITEM_SCAN_MULTIPLE' | translate}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <form ng-submit="getQCItem(true)" ui-keypress="{13:'getQCItem(true)'}">
+                        <div class="input-group" ng-class="{'has-error': mulAccError}">
+                            <span id="sizing-addon2" class="input-group-addon"><i class="icon-scan"></i></span>
+                            <input type="text" ng-model="qcData.serial" class="form-control md" placeholder="{{'INPUT_TEXT.ENTER_MULTIPLE_SCAN_ITM'|translate}}" aria-describedby="sizing-addon2" focus-if>
+                        </div>
+                        <span ng-if="mulAccError" class="help-block text-error" >{{errorMsg | translate}}</span>
+                        <br ng-if="mulAccError"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table_custom_1" ng-if="items.length > 0">
+                <thead>
+                    <tr>
+                        <th>{{'LABEL_TEXT.SERIAL_TEXT' | translate}}</th>
+                        <th class="width30"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="item in items">
+                        <td class="">{{item.serial}}</td>
+                        <td class="block-xs"><a class="table_icon" ng-click="removeItem(item, $index)"><i class="icon-delete "></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

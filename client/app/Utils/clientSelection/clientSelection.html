@@ -1,0 +1,42 @@
+<section>
+    <nav class="header">
+        <div data-ng-controller="navbarCtrl" data-ng-include="'components/navBar/navBar.html'"></div>
+    </nav>
+    <div class="content-wrapper">
+        <div class="content-area">
+            <br>
+            <br>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                        <div class="login_wrapper card">
+                            <img ng-if="profileData.avatar" class="login_logo" src="{{profileData.avatar}}" alt="Avatar" />
+                            <img ng-if="!profileData.avatar" class="login_logo" src="assets/images/user_logo.png" alt="Avatar" />
+                            <h4 class="godam_title_secondary">{{ 'PAGE_CONTENT.PAGE_TWO.HEAD1' | translate }} {{(profileData.user_profile.first_name ? profileData.user_profile.first_name : profileData.user_profile.username)}}<br><br><span>{{ 'PAGE_CONTENT.PAGE_TWO.HEAD2' | translate }}</span>
+                            </h4>
+                            <br>
+                            <form class="login-form selectFC" tabindex="-1" name="selectfcForm">
+                                <div class="form-group">
+                                    <div class="alert alert-danger text-left" ng-show="error">
+                                        <button ng-click="error = !error"  class="close">&times;</button>
+                                        <b>{{'ALERT_MSG.ERROR_HEAD' | translate}}</b>&nbsp;{{errMsg | translate}}
+                                    </div>
+                                    <div class="input-group">
+                                        <span id="sizing-addon2" class="input-group-addon"><i class="icon-location"></i></span>
+                                        <select selectpicker class="selectpicker form-control" ng-options="client as client.name for client in profileData.clients_data" ng-render-model="profileData.clients_data" ng-model="vm.client" ng-change="vm.selectedClient(vm.client)" required>
+                                            <option value="">Select Client</option>
+                                        </select>
+                                </div>
+                            </div>
+                            <div class="form-group m-b-0">
+                                <button ng-disabled='selectfcForm.$invalid' ng-click="vm.launchApp()" class="btn btn-red btn-lg btn_full_width">{{'INPUT_TEXT.BTN5' | translate}}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>

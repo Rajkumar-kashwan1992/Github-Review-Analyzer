@@ -1,0 +1,40 @@
+<form name="addchannel">
+  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+    <div class="form-group">
+      <label>Channel <span class="text-danger">*</span></label>
+      <br>
+      <select class="selectpicker form-control channels" ng-options="chn.id as chn.name for chn in vm.masterChnl" ng-model="vm.channelForm.master_channel" ng-change="vm.masterChnlDetails(vm.channelForm.master_channel)" required>
+        <option value="">{{'INPUT_TEXT.SELECT_MC' | translate}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>{{'LABEL_TEXT.NAME' | translate}} <span class="text-danger">*</span></label>
+      <input type="text" placeholder="{{'INPUT_TEXT.ENTER_NAME' | translate}}" ng-if="!vm.modifyPage" class="form-control" ng-model="vm.channelForm.name" required>
+      <input type="text" placeholder="{{'INPUT_TEXT.ENTER_NAME' | translate}}" ng-if="vm.modifyPage" class="form-control" ng-model="vm.channelForm.name" required ng-disabled = "vm.channelForm.name">
+    </div>
+    <hr>
+    <button class="btn btn-default btn-sm pull-left" ng-click="vm.cancel()"type="button">{{'INPUT_TEXT.BTN8' | translate}}</button>
+    <button class="btn btn-primary btn-sm pull-right" ng-if="!vm.modifyPage" ng-disabled="addchannel.$invalid" ng-click="vm.addChannel()" type="button">{{'INPUT_TEXT.BTN10' | translate}}</button>
+    <button class="btn btn-primary btn-sm pull-right" ng-if="vm.modifyPage" ng-disabled="addchannel.$invalid" ng-click="vm.modifyChannel()" type="button">{{'INPUT_TEXT.BTN9' | translate}}</button>
+  </div>
+  
+
+  <!-- If select channel value in not null-->
+  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-if="vm.customFields.length">
+    <div class="panel panel-default channel_optional_fields">
+      <span class="box_arrow_left hidden-xs"><i class="fa fa-play fa-flip-horizontal"></i></span>
+      <div class="panel-body">
+        <h6>{{'LABEL_TEXT.ADDITIONAL' | translate}}</h6>
+        <div class="form-group" ng-repeat = "(key,value) in vm.customFields">
+          <label class="text-capitalize">{{value | nodash}} <span class="text-danger">*</span></label>
+          <input type="text" placeholder="{{'INPUT_TEXT.ENTER_VALUE' | translate}}" class="form-control" ng-model="vm.channelForm.custom_fields[value]" ng-if= "value != 'password'" required>
+          <input type="password" placeholder="{{'INPUT_TEXT.ENTER_PASSWORD' | translate}}" class="form-control" ng-model="vm.channelForm.custom_fields[value]" ng-if= "value === 'password'" required>
+          <div class="datepicker position_rel date_range" date-format="yyyy-MM-dd" date-min-limit="{{next_date}}" ng-if= "value === 'token_expiry_date'">
+            <input type="text" placeholder="{{'INPUT_TEXT.TOKEN_EXP_DATE' | translate}}" class="form-control" ng-model="vm.channelForm.custom_fields[value]" required>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

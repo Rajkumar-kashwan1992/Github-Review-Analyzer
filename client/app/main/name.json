@@ -1,0 +1,28 @@
+{
+    "count":7,
+    "offset": 2,
+    "next":"http://10.2.8.188:8000/gitapi/get_user_comment/devendraratnam747/?format=json&limit=2&offset=6",
+    "previous":null,
+    "results":[
+        {
+            "git_comment_id":18459899,
+            "comment_message":"This commmentdone by dev on 30 at 3:17PM,upd ated at 1 august 2016 on 2:37",
+            "comment_url":"https://github.com/devendraratnam747/DelhiProject/commit/4600ee866e116c2917065023337f7f2671448757#commitcomment-18459899",
+            "repository":"DelhiProject",
+            "commented_by":{
+                "username":"devendraratnam747"
+            },
+            "rating":10
+        },
+        {
+            "git_comment_id":18459719,
+            "comment_message":"This commmentdone by dev on 30 at 1:38 PM",
+            "comment_url":"https://github.com/devendraratnam747/DelhiProject/commit/4600ee866e116c2917065023337f7f2671448757#commitcomment-18459719",
+            "repository":"DelhiProject",
+            "commented_by":{
+                "username":"devendraratnam747"
+            },
+            "rating":4
+        }
+    ]
+}

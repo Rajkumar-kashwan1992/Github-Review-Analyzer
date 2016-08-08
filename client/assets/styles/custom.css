@@ -1,0 +1,240 @@
+.remove-date {
+    position: absolute;
+    right: 9px;
+    top: 4px;
+    margin: 0 0 0 5px;
+    padding: 0;
+    border: none;
+    background: 0 0;
+    cursor: pointer;
+    vertical-align: middle;
+    font: 700 16px Arial,sans-serif;
+    color: #585858;
+    text-decoration: none;
+    z-index: 99;
+}
+
+.date_range {
+	position: relative;
+}
+
+.anchorDisabled {
+    pointer-events: none;
+    background: #f5f5f5;
+    opacity: .3;
+    filter: alpha(opacity:30);
+}
+
+#loading-bar {
+    pointer-events: all;
+    z-index: 99999;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    cursor: wait;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.no-pointer-event {
+    pointer-events: none;
+}
+.anchorDisabled {
+    pointer-events: none;
+    background: #f5f5f5;
+    opacity: 0.3;
+    filter: alpha(opacity: 30);
+}
+/* 720kb datepicker custom style */
+
+.style720kb {
+    font-size: 12px;
+    font-family: opensans-regular;
+}
+/*Loading bar css*/
+
+#loading-bar-spinner {
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto !important;
+    width: 24px;
+    height: 24px;
+}
+#loading-bar-spinner .spinner-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+}
+#loading-bar .bar {
+    display: none;
+}
+.carousel-indicators {
+    display: none;
+}
+#carouselItem img {
+    height: 200px;
+}
+.carousel-control .icon-next,
+.carousel-control .glyphicon-chevron-right {
+    margin-right: -15px !important;
+}
+/*Tag CSS*/
+
+tags-input .host {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+tags-input .tags {
+    padding: 0;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+tags-input.ng-invalid .tags {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+tags-input .tags .tag-item {
+    background: transparent;
+    border-radius: 0;
+    font-size: 12px;
+    font-family: opensans-regular;
+    border: none;
+}
+tags-input .tags .tag-item .remove-button {
+    position: absolute;
+    right: 10px;
+    top: 4px;
+    text-decoration: none;
+}
+tags-input .tags .input {
+    font-size: 12px;
+    font-family: opensans-regular;
+    background: transparent;
+    padding: 0 7px;
+}
+tags-input .autocomplete {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 0px;
+    padding: 5px 0;
+    position: absolute;
+    width: 100%;
+    z-index: 999;
+}
+tags-input .autocomplete .suggestion-item.selected,
+tags-input .autocomplete .suggestion-item.selected em {
+    background-color: #f4f4f4;
+    color: #666;
+}
+tags-input .autocomplete .suggestion-item {
+    font-size: 12px;
+    font-family: opensans-regular;
+    color: #555;
+    text-align: left;
+}
+tags-input .autocomplete .suggestion-item em {
+    background-color: #fff;
+    color: #555;
+    font-size: 12px;
+    font-family: opensans-semibold;
+    font-weight: normal;
+}
+tags-input .tags .input::-webkit-input-placeholder {
+    font-size: 11px !important;
+}
+tags-input .tags .input:-moz-placeholder {
+    font-size: 11px !important;
+}
+tags-input .tags .input:-ms-input-placeholder {
+    font-size: 11px !important;
+}
+tags-input .tags.focused {
+    box-shadow: none;
+}
+.create_page tags-input .tags .input {
+    font-size: 11px;
+    margin: 0;
+    height: 23px;
+    color: #656466;
+}
+.create_page tags-input .tags .tag-item {
+    font-size: 11px;
+    height: 23px;
+    line-height: 24px;
+    margin: 0;
+}
+.create_page tags-input .tags .tag-item .remove-button {
+    top: 5px;
+}
+div:focus {
+    outline: 0;
+}
+.form-group {
+    position: relative;
+}
+.help-block {
+    position: absolute;
+    right: 0;
+}
+.selectFC .help-block {
+    position: relative;
+}
+.tags input[type='text'] {
+    min-width: 150px;
+}
+.login-form .help-block,
+.card .help-block {
+    position: relative;
+    right: 0;
+}
+.a_as_button {
+    display: table-cell !important;
+    vertical-align: middle;
+}
+.date_range {
+    position: relative;
+}
+a.remove-date {
+    position: absolute;
+    right: 9px;
+    top: 4px;
+    margin: 0 0 0 5px;
+    padding: 0;
+    border: none;
+    background: 0 0;
+    cursor: pointer;
+    vertical-align: middle;
+    font: 700 16px Arial, sans-serif;
+    color: #585858;
+    text-decoration: none;
+    z-index: 99;
+}
+.breadcrumb > .active a {
+    color: #217589;
+    font-family: opensans-semibold;
+}
+.btn.applyBtn,
+.btn.cancelBtn {
+    min-width: auto;
+    display: inline;
+}
+.form-control[readonly] {
+    background: #fff !important;
+}
+.clear{
+  clear:both;
+
+.btn a{
+    color: #656466;
+}
+.has-error .form-control{
+  border:1px solid #d1d1d1;
+}
+.has-error .form-control:focus{
+  border:1px solid #d1d1d1;
+  box-shadow: none;
+}
